@@ -10,7 +10,7 @@ const SideBar = ({ isMenuOpen, setIsMenuOpen }) => {
 
   return (
     <div className={`flex flex-col h-screen min-w-72 p-5 dark:bg-gradient-to-b from-[#242124]/30 to-[#000000]/30 border-r border-[#80609F]/30
-    backdrop-blur-3xl transition-all duration-500 max-md:absolute left-0 z-1 ${!isMenuOpen && 'max-md:-translate-x-full'}`}>
+    backdrop-blur-3xl transition-all duration-500 max-md:absolute left-0 z-10 ${!isMenuOpen && 'max-md:-translate-x-full'}`}>
       {/* Logo */}
       <img src={theme === 'dark' ? assets.logo_full : assets.logo_full_dark} alt="" className='w-full max-w-48'/>
 
@@ -52,16 +52,16 @@ const SideBar = ({ isMenuOpen, setIsMenuOpen }) => {
       </div>
 
         {/* Community Images  */}
-         <div onClick={()=> {navigate('/community'); setIsMenuOpen(false)}} className='flex items-center gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-103 transition-all'>
-          <img src={assets.gallery_icon} className='w-4.5 not-dark:invert' alt="" />
+         <div onClick={()=> {navigate('/community'); setIsMenuOpen(false)}} className='flex items-center gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-105 transition-all'>
+          <img src={assets.gallery_icon} className={`w-5 ${theme === 'light' ? 'invert' : ''}`} alt="" />
           <div className='flex flex-col text-sm'>
             <p>Community Images</p>
           </div>
          </div>
 
          {/* Credit Purcahse Option  */}
-         <div onClick={()=> {navigate('/credits'); setIsMenuOpen(false)}} className='flex items-center gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-103 transition-all'>
-          <img src={assets.diamond_icon} className='w-4.5 dark:invert' alt="" />
+         <div onClick={()=> {navigate('/credits'); setIsMenuOpen(false)}} className='flex items-center gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-105 transition-all'>
+          <img src={assets.diamond_icon} className='w-5 dark:invert' alt="" />
           <div className='flex flex-col text-sm'>
             <p>Credits : {user?.credits}</p>
             <p className='text-xs text-gray-400'>Purchase credits to use quickgpt</p>
@@ -71,7 +71,7 @@ const SideBar = ({ isMenuOpen, setIsMenuOpen }) => {
          {/* Dark Mode Toggle */}
         <div className='flex items-center justify-between gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md'>
           <div className='flex items-center gap-2 text-sm'>
-            <img src={assets.theme_icon} className='w-4 not-dark:invert' alt='' />
+            <img src={assets.theme_icon} className={`w-4 ${theme === 'light' ? 'invert' : ''}`} alt='' />
             <p>Dark Mode</p>
           </div>
           <label className='relative inline-flex cursor-pointer'>
@@ -86,10 +86,10 @@ const SideBar = ({ isMenuOpen, setIsMenuOpen }) => {
          <div className='flex items-center gap-3 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer group'>
           <img src={assets.user_icon} className='w-7 rounded-full' alt="" />
           <p className='flex-1 text-sm dark:text-primary truncate'>{user ? user.name : 'Login your Account'}</p>
-          {user && <img src={assets.logout_icon} className='h-5 cursor-pointer hidden not-dark:invert group-hover:block'/>}
+          {user && <img src={assets.logout_icon} className={`h-5 cursor-pointer hidden group-hover:block ${theme === 'light' ? 'invert' : ''}`}/>}
          </div>
 
-         <img onClick={()=> setIsMenuOpen(false)} src={assets.close_icon} className='absolute top-3 right-3 w-5 h-5 cursor-pointer md:hidden not-dark:invert' alt=""  />
+         <img onClick={()=> setIsMenuOpen(false)} src={assets.close_icon} className={`absolute top-3 right-3 w-5 h-5 cursor-pointer md:hidden ${theme === 'light' ? 'invert' : ''}`} alt="" />
 
     </div>
   )
