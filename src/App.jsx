@@ -8,8 +8,12 @@ import { useState } from 'react'
 import { assets } from './assets/assets'
 import './assets/prism.css'
 import Loading from './pages/Loading'
+import { useAppContext } from './context/AppContext'
+import Login from './pages/Login'
 
 const App = () => {
+
+  const {user} = useAppContext()
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const {pathname} = useLocation()
@@ -20,16 +24,27 @@ const App = () => {
     <>
       {!isMenuOpen && <img src={assets.menu_icon} className='absolute top-3 left-3 w-8 h-8 cursor-pointer md:hidden invert dark:invert-0'
       onClick={()=>setIsMenuOpen(true)}/>}
-      <div className='dark:bg-gradient-to-b from-[#242124] to-[#000000] dark:text-white'>
-       <div className='flex h-screen w-screen'>
-        <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-        <Routes>
+
+      {user ? (
+
+        <div className='dark:bg-gradient-to-b from-[#242124] to-[#000000] dark:text-white'>
+          <div className='flex h-screen w-screen'>
+          <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+          <Routes>
           <Route path='/' element={<ChatBox />} />
           <Route path='/credits' element={<Credit />} />
           <Route path='/community' element={<Community />} />
         </Routes>
       </div> 
       </div>
+
+      ) : (
+        <div className='bg-gradient-to-b from-[#242124] to-[#000000] flex items-center justify-center h-screen w-screen'>
+          <Login />
+        </div>
+      )}
+
+     
       
     </>
   )
