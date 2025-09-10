@@ -48,3 +48,11 @@ export const loginUser = async (req, res) => {
 }
 
 // API to get user Data.
+export const getUser = async (req, res) =>{
+  try {
+    const user = req.user;
+    return res.json({success: true, user})
+  } catch (error) {
+    return res.json({success: false, message: error.message})
+  }
+}
